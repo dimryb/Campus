@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:id="@+id/panel_menu_bottom"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/panel_button_height"
+    android:orientation="vertical"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent">
+
+    <LinearLayout
+        android:id="@+id/panel_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#0F2733"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/home_button"
+            style="@style/Widget.AppTheme.IconCheckableButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@string/schedule"
+            android:fontFamily="sans-serif"
+            android:padding="@dimen/common_spacing"
+            android:text="@string/schedule"
+            app:icon="@drawable/ic_baseline_event_note_24" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/users_button"
+            style="@style/Widget.AppTheme.IconCheckableButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@string/ads"
+            android:padding="@dimen/common_spacing"
+            android:text="@string/ads"
+            app:icon="@drawable/ic_baseline_notifications_none_24" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/events_button"
+            style="@style/Widget.AppTheme.IconCheckableButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@string/reviews"
+            android:padding="@dimen/common_spacing"
+            android:text="@string/reviews"
+            app:icon="@drawable/ic_baseline_star_border_24" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/create_post_button"
+            style="@style/Widget.AppTheme.IconCheckableButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@string/settings"
+            android:padding="@dimen/common_spacing"
+            android:text="@string/settings"
+            app:icon="@drawable/ic_baseline_settings_24" />
+    </LinearLayout>
+
+</LinearLayout>
