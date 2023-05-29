@@ -6,6 +6,10 @@
     android:background="#0C1A23"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <include
+        android:id="@+id/panel_top"
+        layout="@layout/panel_top" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
