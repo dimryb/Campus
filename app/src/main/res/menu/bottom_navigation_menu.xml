@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/schedule_button"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_event_note_24"
+        android:title="@string/schedule"/>
+    <item
+        android:id="@+id/ads_button"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_notifications_none_24"
+        android:title="@string/ads"/>
+    <item
+        android:id="@+id/reviews_button"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_star_border_24"
+        android:title="@string/reviews"/>
+    <item
+        android:id="@+id/settings_button"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="@string/settings"/>
+</menu>
