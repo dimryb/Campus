@@ -11,5 +11,6 @@
     <string name="reviews_title">Reviews</string>
     <string name="teachers">Teachers</string>
     <string name="Ads">Ads</string>
-    <string name="ads_title">Все объявления</string>
+    <string name="ads_title">All ads</string>
+    <string name="settings_title">Settings</string>
 </resources>
