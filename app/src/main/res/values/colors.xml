@@ -10,4 +10,5 @@
     <color name="panel_color">#0F2733</color>
     <color name="unchecked">#98A6AF</color>
     <color name="checked">#F2FBF9</color>
+    <color name="background">#0C1A23</color>
 </resources>
