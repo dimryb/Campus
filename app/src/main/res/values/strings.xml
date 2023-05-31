@@ -9,5 +9,7 @@
     <string name="date">30 may</string>
     <string name="last_reviews">Last reviews</string>
     <string name="reviews_title">Reviews</string>
-    <string name="teachers">Преподаватели</string>
+    <string name="teachers">Teachers</string>
+    <string name="Ads">Ads</string>
+    <string name="ads_title">Все объявления</string>
 </resources>

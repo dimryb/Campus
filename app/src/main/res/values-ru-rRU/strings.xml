@@ -7,6 +7,9 @@
     <string name="settings">Настройки</string>
     <string name="calendar">Календарь</string>
     <string name="reviews_title">Отзывы</string>
-    <string name="last_reviews" translatable="false">Последние отзывы</string>
-    <string name="date" translatable="false">30 мая</string>
+    <string name="last_reviews">Последние отзывы</string>
+    <string name="date">30 мая</string>
+    <string name="Ads">Объявления</string>
+    <string name="teachers">Преподаватели</string>
+    <string name="ads_title">Все объявления</string>
 </resources>

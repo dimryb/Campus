@@ -11,30 +11,16 @@
         layout="@layout/panel_top_ads" />
 
     <TextView
-        android:id="@+id/last_reviews_title"
+        android:id="@+id/ads_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="@string/last_reviews"
+        android:text="@string/ads_title"
         android:textColor="@color/unchecked"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/panel_top_ads" />
-
-    <TextView
-        android:id="@+id/teachers_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="204dp"
-        android:text="@string/teachers"
-        android:textColor="@color/unchecked"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/panel_top_ads" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
