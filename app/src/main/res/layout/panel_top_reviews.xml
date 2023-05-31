@@ -22,19 +22,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Spinner
-            android:id="@+id/groups_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="@color/unchecked"
-            app:layout_constraintBottom_toTopOf="@+id/date"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/calendar_button"
+            android:id="@+id/search_button"
             style="@style/Widget.AppTheme.IconCheckableButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,23 +31,23 @@
             android:contentDescription="@string/calendar"
             android:fontFamily="sans-serif"
             android:padding="@dimen/common_spacing"
-            app:icon="@drawable/ic_baseline_calendar_month_24"
+            app:icon="@drawable/ic_baseline_search_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/date"
+            android:id="@+id/review_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/date"
+            android:layout_marginStart="24dp"
+            android:text="@string/reviews_title"
             android:textColor="@color/unchecked"
-            android:textSize="10sp"
+            android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="SmallSp" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
