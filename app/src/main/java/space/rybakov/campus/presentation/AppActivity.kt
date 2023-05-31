@@ -2,6 +2,7 @@ package space.rybakov.campus.presentation
 
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -11,6 +12,7 @@ import space.rybakov.campus.databinding.ActivityAppBinding
 class AppActivity : AppCompatActivity(R.layout.activity_app) {
 
     private lateinit var binding: ActivityAppBinding
+    private val mainViewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
