@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Кампус</string>
+    <string name="schedule">Расписание</string>
+    <string name="ads">Объявления</string>
+    <string name="reviews">Отзывы</string>
+    <string name="settings">Настройки</string>
+    <string name="calendar">Календарь</string>
+</resources>

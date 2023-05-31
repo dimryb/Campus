@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Campus</string>
+    <string name="schedule">Schedule</string>
+    <string name="ads">Ads</string>
+    <string name="reviews">Reviews</string>
+    <string name="settings">Settings</string>
+    <string name="calendar">Calendar</string>
+    <string name="rest_text" translatable="false">Сегодня выходной - самое время почитать\nлюбимую книгу</string>
+    <string name="date">30 мая</string>
 </resources>
