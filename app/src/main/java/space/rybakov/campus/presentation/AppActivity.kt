@@ -34,8 +34,8 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
             Log.d("", item.toString())
             when (item.itemId) {
                 R.id.schedule_button -> {
-                    //navController.navigate(R.id.homeFragment)
-                    navController.navigateUp()
+                    navController.navigate(R.id.homeFragment)
+                    //navController.navigateUp()
                 }
                 R.id.ads_button -> {
                     navController.navigate(R.id.adsFragment)
