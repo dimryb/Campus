@@ -17,11 +17,11 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
     val ads: LiveData<List<Ad>> = repository.ads.asLiveData(Dispatchers.Default)
 
-    fun getAds(){
-        viewModelScope.launch{
+    fun getAds() {
+        viewModelScope.launch {
             try {
                 repository.getAds()
-            } catch (e: Exception){
+            } catch (e: Exception) {
                 TODO("нужно сделать")
             }
         }
