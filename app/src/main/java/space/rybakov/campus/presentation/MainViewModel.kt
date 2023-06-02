@@ -27,4 +27,14 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    fun getLastReview() {
+        viewModelScope.launch {
+            try {
+                repository.getLastReview()
+            } catch (e: Exception) {
+                TODO("нужно сделать")
+            }
+        }
+    }
+
 }
