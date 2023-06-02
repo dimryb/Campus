@@ -7,7 +7,7 @@ import space.rybakov.campus.databinding.CardAdBinding
 import space.rybakov.campus.entities.Ad
 
 class AdsAdapter(
-    private val onInteractionListener: OnInteractionListenerAd,
+    private val onInteractionListener: OnInteractionListener,
 ) : ListAdapter<Ad, AdViewHolder>(AdDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdViewHolder {

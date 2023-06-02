@@ -6,7 +6,7 @@ import space.rybakov.campus.entities.Ad
 
 class AdViewHolder(
     private val binding: CardAdBinding,
-    private val onInteractionListener: OnInteractionListenerAd,
+    private val onInteractionListener: OnInteractionListener,
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(ad: Ad) {
