@@ -9,6 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import space.rybakov.campus.domain.Repository
 import space.rybakov.campus.entities.Ad
+import space.rybakov.campus.entities.Review
 import javax.inject.Inject
 
 @HiltViewModel
@@ -16,6 +17,7 @@ class MainViewModel @Inject constructor(
     private val repository: Repository,
 ) : ViewModel() {
     val ads: LiveData<List<Ad>> = repository.ads.asLiveData(Dispatchers.Default)
+    val reviews: LiveData<List<Review>> = repository.reviews.asLiveData(Dispatchers.Default)
 
     fun getAds() {
         viewModelScope.launch {

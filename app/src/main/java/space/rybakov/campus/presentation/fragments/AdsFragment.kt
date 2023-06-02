@@ -1,7 +1,6 @@
-package space.rybakov.campus.presentation
+package space.rybakov.campus.presentation.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import space.rybakov.campus.databinding.FragmentAdsBinding
 import space.rybakov.campus.entities.Ad
+import space.rybakov.campus.presentation.AdsAdapter
+import space.rybakov.campus.presentation.MainViewModel
+import space.rybakov.campus.presentation.OnInteractionListener
 
 class AdsFragment : Fragment() {
 
@@ -18,8 +20,8 @@ class AdsFragment : Fragment() {
     private val binding: FragmentAdsBinding
         get() = _binding ?: throw RuntimeException("FragmentAdsBinding == null!")
 
-    private val adsAdapter = AdsAdapter(object : OnInteractionListenerAd {
-        override fun onLike(ad: Ad) {
+    private val adsAdapter = AdsAdapter(object : OnInteractionListener {
+        override fun onClick(ad: Ad) {
             TODO("Not yet implemented")
         }
     })
@@ -35,7 +37,7 @@ class AdsFragment : Fragment() {
             false
         )
 
-        binding.filmsList.adapter = adsAdapter
+        binding.adsList.adapter = adsAdapter
 
         observeViewModel()
         viewModel.getAds()

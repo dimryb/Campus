@@ -12,9 +12,9 @@ class RepositoryImpl @Inject constructor() : Repository {
     override val ads: Flow<List<Ad>>
         get() = _ads
 
-    private val _review = MutableSharedFlow<List<Review>>(replay = 1)
-    override val review: Flow<List<Review>>
-        get() = _review
+    private val _reviews = MutableSharedFlow<List<Review>>(replay = 1)
+    override val reviews: Flow<List<Review>>
+        get() = _reviews
 
     override suspend fun getAds() {
         val adsList = mutableListOf(
@@ -74,6 +74,6 @@ class RepositoryImpl @Inject constructor() : Repository {
                 credit = 7.2f,
             ),
         )
-        _review.tryEmit(reviewsList)
+        _reviews.tryEmit(reviewsList)
     }
 }

@@ -6,7 +6,7 @@ import space.rybakov.campus.entities.Review
 
 interface Repository {
     val ads: Flow<List<Ad>>
-    val review: Flow<List<Review>>
+    val reviews: Flow<List<Review>>
 
     suspend fun getAds()
     suspend fun getLastReview()

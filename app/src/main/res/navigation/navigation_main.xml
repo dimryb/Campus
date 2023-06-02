@@ -22,12 +22,12 @@
     </fragment>
     <fragment
         android:id="@+id/adsFragment"
-        android:name="space.rybakov.campus.presentation.AdsFragment"
+        android:name="space.rybakov.campus.presentation.fragments.AdsFragment"
         android:label="AdsFragment"
         tools:layout="@layout/fragment_ads"/>
     <fragment
         android:id="@+id/reviewsFragment"
-        android:name="space.rybakov.campus.presentation.ReviewsFragment"
+        android:name="space.rybakov.campus.presentation.fragments.ReviewsFragment"
         android:label="ReviewsFragment"
         tools:layout="@layout/fragment_reviews"/>
     <fragment
