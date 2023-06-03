@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import space.rybakov.campus.domain.Repository
 import space.rybakov.campus.entities.Ad
 import space.rybakov.campus.entities.Review
+import space.rybakov.campus.entities.Teacher
 import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor() : Repository {
@@ -15,6 +16,10 @@ class RepositoryImpl @Inject constructor() : Repository {
     private val _reviews = MutableSharedFlow<List<Review>>(replay = 1)
     override val reviews: Flow<List<Review>>
         get() = _reviews
+
+    private val _teachers = MutableSharedFlow<List<Teacher>>(replay = 1)
+    override val teachers: Flow<List<Teacher>>
+        get() = _teachers
 
     override suspend fun getAds() {
         val adsList = mutableListOf(
@@ -75,5 +80,39 @@ class RepositoryImpl @Inject constructor() : Repository {
             ),
         )
         _reviews.tryEmit(reviewsList)
+    }
+
+    override suspend fun getTeachers() {
+        val teachersList = mutableListOf(
+            Teacher(
+                name = "Преподаватель 1",
+                rating = 1.1f,
+            ),
+            Teacher(
+                name = "Преподаватель 2",
+                rating = 2.2f,
+            ),
+            Teacher(
+                name = "Преподаватель 3",
+                rating = 3.3f,
+            ),
+            Teacher(
+                name = "Преподаватель 4",
+                rating = 4.4f,
+            ),
+            Teacher(
+                name = "Преподаватель 5",
+                rating = 5.5f,
+            ),
+            Teacher(
+                name = "Преподаватель 6",
+                rating = 6.6f,
+            ),
+            Teacher(
+                name = "Преподаватель 7",
+                rating = 7.7f,
+            ),
+        )
+        _teachers.tryEmit(teachersList)
     }
 }

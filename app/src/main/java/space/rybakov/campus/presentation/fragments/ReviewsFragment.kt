@@ -11,6 +11,7 @@ import space.rybakov.campus.entities.Ad
 import space.rybakov.campus.presentation.MainViewModel
 import space.rybakov.campus.presentation.OnInteractionListener
 import space.rybakov.campus.presentation.ReviewsAdapter
+import space.rybakov.campus.presentation.TeachersAdapter
 
 class ReviewsFragment : Fragment() {
 
@@ -21,6 +22,12 @@ class ReviewsFragment : Fragment() {
         get() = _binding ?: throw RuntimeException("FragmentReviewsBinding == null!")
 
     private val reviewsAdapter = ReviewsAdapter(object : OnInteractionListener {
+        override fun onClick(ad: Ad) {
+            TODO("Not yet implemented")
+        }
+    })
+
+    private val teacherAdapter = TeachersAdapter(object : OnInteractionListener {
         override fun onClick(ad: Ad) {
             TODO("Not yet implemented")
         }
@@ -38,9 +45,11 @@ class ReviewsFragment : Fragment() {
         )
 
         binding.reviewsList.adapter = reviewsAdapter
+        binding.teachersList.adapter = teacherAdapter
 
         observeViewModel()
         viewModel.getLastReview()
+        viewModel.getTeachersReview()
 
         return binding.root
     }
@@ -53,6 +62,10 @@ class ReviewsFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.reviews.observe(viewLifecycleOwner) { reviews ->
             reviewsAdapter.submitList(reviews)
+        }
+
+        viewModel.teachers.observe(viewLifecycleOwner) { teachers ->
+            teacherAdapter.submitList(teachers)
         }
     }
 }
