@@ -1,17 +1,24 @@
 package space.rybakov.campus.data
 
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
+import space.rybakov.campus.data.dao.CampusDao
+import space.rybakov.campus.data.entity.AdEntity
+import space.rybakov.campus.data.entity.toDto
+import space.rybakov.campus.data.entity.toEntity
 import space.rybakov.campus.domain.Repository
 import space.rybakov.campus.entities.Ad
 import space.rybakov.campus.entities.Review
 import space.rybakov.campus.entities.Teacher
 import javax.inject.Inject
 
-class RepositoryImpl @Inject constructor() : Repository {
-    private val _ads = MutableSharedFlow<List<Ad>>(replay = 1)
-    override val ads: Flow<List<Ad>>
-        get() = _ads
+class RepositoryImpl @Inject constructor(
+    private val campusDao: CampusDao,
+) : Repository {
+    override val ads = campusDao.getAds().map(List<AdEntity>::toDto).flowOn(Dispatchers.Default)
 
     private val _reviews = MutableSharedFlow<List<Review>>(replay = 1)
     override val reviews: Flow<List<Review>>
@@ -33,7 +40,7 @@ class RepositoryImpl @Inject constructor() : Repository {
                 """
             ),
             Ad(
-                1,
+                2,
                 title = "В НГТУ НЭТИ показали беспилотные системы",
                 content = """
 Форум-выставка «Первый беспилотный» прошел 14 декабря в Точке кипения НГТУ НЭТИ.
@@ -44,7 +51,7 @@ class RepositoryImpl @Inject constructor() : Repository {
                 """
             ),
             Ad(
-                1,
+                3,
                 title = "ДОД целевого обучения",
                 content = """
 НГТУ НЭТИ стал организатором уникального мероприятия — Выставки-2023 
@@ -54,7 +61,7 @@ class RepositoryImpl @Inject constructor() : Repository {
                 """
             ),
             Ad(
-                1,
+                4,
                 title = "Лига абитуриентов НГТУ НЭТИ»: греко-римская борьба",
                 content = """
 В эти выходные прошли соревнования по греко-римской борьбе в рамках «Лиги абитуриентов». 
@@ -63,7 +70,7 @@ class RepositoryImpl @Inject constructor() : Repository {
                 """
             ),
         )
-        _ads.tryEmit(adsList)
+        campusDao.insertAds(adsList.toEntity())
     }
 
     override suspend fun getLastReview() {

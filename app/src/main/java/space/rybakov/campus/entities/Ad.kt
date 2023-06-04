@@ -1,7 +1,7 @@
 package space.rybakov.campus.entities
 
 data class Ad(
-    val id: Int,
+    val id: Long,
     val title: String = "Заголовок",
     val content: String,
 )

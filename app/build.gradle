@@ -40,7 +40,13 @@ android {
 dependencies {
     def hilt_version = "2.44"
     def lifecycleVersion = "2.5.1"
+    def roomVersion = "2.5.1"
+    def roomPagingVersion = roomVersion
+    def roomRuntimeVersion = roomVersion
 
+    implementation "androidx.room:room-paging:$roomPagingVersion"
+    implementation "androidx.room:room-runtime:$roomRuntimeVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
     implementation "com.google.dagger:hilt-android:$hilt_version"
@@ -53,6 +59,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
+    kapt "androidx.room:room-compiler:$roomVersion"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
     kapt "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.5.0"
 }
