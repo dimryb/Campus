@@ -1,14 +1,10 @@
 package space.rybakov.campus.data
 
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import space.rybakov.campus.data.dao.CampusDao
-import space.rybakov.campus.data.entity.AdEntity
-import space.rybakov.campus.data.entity.toDto
-import space.rybakov.campus.data.entity.toEntity
+import space.rybakov.campus.data.entity.*
 import space.rybakov.campus.domain.Repository
 import space.rybakov.campus.entities.Ad
 import space.rybakov.campus.entities.Review
@@ -19,14 +15,10 @@ class RepositoryImpl @Inject constructor(
     private val campusDao: CampusDao,
 ) : Repository {
     override val ads = campusDao.getAds().map(List<AdEntity>::toDto).flowOn(Dispatchers.Default)
-
-    private val _reviews = MutableSharedFlow<List<Review>>(replay = 1)
-    override val reviews: Flow<List<Review>>
-        get() = _reviews
-
-    private val _teachers = MutableSharedFlow<List<Teacher>>(replay = 1)
-    override val teachers: Flow<List<Teacher>>
-        get() = _teachers
+    override val reviews =
+        campusDao.getReviews().map(List<ReviewEntity>::toDto).flowOn(Dispatchers.Default)
+    override val teachers =
+        campusDao.getTeacher().map(List<TeacherEntity>::toDto).flowOn(Dispatchers.Default)
 
     override suspend fun getAds() {
         val adsList = mutableListOf(
@@ -76,17 +68,19 @@ class RepositoryImpl @Inject constructor(
     override suspend fun getLastReview() {
         val reviewsList = mutableListOf(
             Review(
+                id = 0,
                 teacher = "Зайцева Татьяна Ивановна",
                 content = "Нормальные оценки ставить",
                 credit = 4.2f,
             ),
             Review(
+                id = 2,
                 teacher = "Федорова Елена Ольговна",
                 content = "Какая-то не очень, но мне нравится",
                 credit = 7.2f,
             ),
         )
-        _reviews.tryEmit(reviewsList)
+        campusDao.insertReviews(reviewsList.toEntity())
     }
 
     override suspend fun getTeachers() {
@@ -120,6 +114,6 @@ class RepositoryImpl @Inject constructor(
                 rating = 7.7f,
             ),
         )
-        _teachers.tryEmit(teachersList)
+        campusDao.insertTeacher(teachersList.toEntity())
     }
 }
