@@ -1,7 +1,6 @@
-package space.rybakov.campus.presentation
+package space.rybakov.campus.presentation.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,13 +8,16 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import hilt_aggregated_deps._dagger_hilt_android_internal_lifecycle_DefaultViewModelFactories_ActivityEntryPoint
 import space.rybakov.campus.R
 import space.rybakov.campus.databinding.FragmentHomeBinding
+import space.rybakov.campus.entities.Ad
+import space.rybakov.campus.entities.Lesson
 import space.rybakov.campus.entities.ScheduleDate
+import space.rybakov.campus.presentation.AdsAdapter
+import space.rybakov.campus.presentation.LessonAdapter
+import space.rybakov.campus.presentation.MainViewModel
+import space.rybakov.campus.presentation.OnInteractionListener
 import java.time.LocalDate
-import java.util.*
 
 class HomeFragment : Fragment() {
 
@@ -24,6 +26,12 @@ class HomeFragment : Fragment() {
         get() = _binding ?: throw RuntimeException("FragmentHomeBinding == null!")
 
     private val viewModel: MainViewModel by activityViewModels()
+
+    private val lessonAdapter = LessonAdapter(object : OnInteractionListener {
+        override fun onClick(ad: Ad) {
+            TODO("Not yet implemented")
+        }
+    })
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,12 +44,17 @@ class HomeFragment : Fragment() {
             false
         )
 
+        binding.schedulerList.adapter = lessonAdapter
+
         val date = LocalDate.now()
         viewModel.setDate(ScheduleDate(date.year, date.monthValue, date.dayOfMonth))
 
         createGroupsSpinner()
         setupClickListeners()
         observeViewModel()
+
+        viewModel.getSchedule()
+
         return binding.root
     }
 
@@ -82,6 +95,9 @@ class HomeFragment : Fragment() {
         }
         viewModel.schedulerVisible.observe(viewLifecycleOwner) {
             binding.schedulerList.visibility = if (it) View.VISIBLE else View.GONE
+        }
+        viewModel.schedule.observe(viewLifecycleOwner) { lessons ->
+            lessonAdapter.submitList(lessons)
         }
     }
 

@@ -1,14 +1,15 @@
 package space.rybakov.campus.data
 
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import space.rybakov.campus.data.dao.CampusDao
 import space.rybakov.campus.data.entity.*
 import space.rybakov.campus.domain.Repository
-import space.rybakov.campus.entities.Ad
-import space.rybakov.campus.entities.Review
-import space.rybakov.campus.entities.Teacher
+import space.rybakov.campus.entities.*
 import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(
@@ -68,13 +69,11 @@ class RepositoryImpl @Inject constructor(
     override suspend fun getLastReview() {
         val reviewsList = mutableListOf(
             Review(
-                id = 0,
                 teacher = "Зайцева Татьяна Ивановна",
                 content = "Нормальные оценки ставить",
                 credit = 4.2f,
             ),
             Review(
-                id = 2,
                 teacher = "Федорова Елена Ольговна",
                 content = "Какая-то не очень, но мне нравится",
                 credit = 7.2f,
@@ -116,4 +115,25 @@ class RepositoryImpl @Inject constructor(
         )
         campusDao.insertTeacher(teachersList.toEntity())
     }
+
+    override suspend fun fillSchedule() {
+        val lessonList = mutableListOf(
+            Lesson(
+                name = "Химия",
+            ),
+        )
+        campusDao.insertSchedule(lessonList.toEntity())
+    }
+
+    override fun getSchedule(group: Group, date: ScheduleDate): List<Lesson> {
+        return try {
+            val result = campusDao.getSchedule().toDto()
+            result
+        }catch (e: Exception){
+            //TODO("есть проблема")
+            Log.e("error", e.toString())
+            emptyList<Lesson>()
+        }
+    }
+
 }

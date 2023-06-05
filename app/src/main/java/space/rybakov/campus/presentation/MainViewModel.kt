@@ -5,10 +5,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import space.rybakov.campus.domain.Repository
-import space.rybakov.campus.entities.Ad
-import space.rybakov.campus.entities.Review
-import space.rybakov.campus.entities.ScheduleDate
-import space.rybakov.campus.entities.Teacher
+import space.rybakov.campus.entities.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,6 +15,8 @@ class MainViewModel @Inject constructor(
     val ads: LiveData<List<Ad>> = repository.ads.asLiveData(Dispatchers.Default)
     val reviews: LiveData<List<Review>> = repository.reviews.asLiveData(Dispatchers.Default)
     val teachers: LiveData<List<Teacher>> = repository.teachers.asLiveData(Dispatchers.Default)
+   //val scedule: LiveData<List<Lesson>> =
+    val schedule = MutableLiveData<List<Lesson>>()
 
     val calendarVisible = MutableLiveData<Boolean>()
     val schedulerVisible = MutableLiveData<Boolean>()
@@ -59,4 +58,20 @@ class MainViewModel @Inject constructor(
         textDate.value = date.toString()
     }
 
+    fun getSchedule(){
+        viewModelScope.launch {
+            try {
+                repository.fillSchedule() // Заполняет тестовыми данными
+            } catch (e: Exception) {
+                TODO("нужно сделать")
+            }
+        }
+        //viewModelScope.launch {
+        try {
+            schedule.value = repository.getSchedule(Group(1, ""), ScheduleDate(1,1,1))
+        } catch (e: Exception) {
+            TODO("нужно сделать")
+        }
+        //}
+    }
 }
