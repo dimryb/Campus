@@ -48,6 +48,8 @@ class ReviewsFragment : Fragment() {
         binding.teachersList.adapter = teacherAdapter
 
         observeViewModel()
+        setupClickListeners()
+
         viewModel.getLastReview()
         viewModel.getTeachersReview()
 
@@ -67,5 +69,9 @@ class ReviewsFragment : Fragment() {
         viewModel.teachers.observe(viewLifecycleOwner) { teachers ->
             teacherAdapter.submitList(teachers)
         }
+    }
+
+    private fun setupClickListeners(){
+
     }
 }
