@@ -63,11 +63,13 @@ class HomeFragment : Fragment() {
             binding.calendar.visibility = View.VISIBLE
 
             viewModel.calendarVisible.value = true
+            viewModel.schedulerVisible.value = false
         }
         binding.calendar.setOnDateChangedListener { _, year, monthIndex, day ->
             binding.calendar.firstDayOfWeek
             viewModel.setDate(ScheduleDate(year = year, month = monthIndex + 1, day = day))
             viewModel.calendarVisible.value = false
+            viewModel.schedulerVisible.value = true
         }
     }
 
@@ -77,6 +79,9 @@ class HomeFragment : Fragment() {
         }
         viewModel.textDate.observe(viewLifecycleOwner){
             binding.panelTop.date.text = it
+        }
+        viewModel.schedulerVisible.observe(viewLifecycleOwner) {
+            binding.schedulerList.visibility = if (it) View.VISIBLE else View.GONE
         }
     }
 

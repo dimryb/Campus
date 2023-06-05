@@ -20,6 +20,7 @@ class MainViewModel @Inject constructor(
     val teachers: LiveData<List<Teacher>> = repository.teachers.asLiveData(Dispatchers.Default)
 
     val calendarVisible = MutableLiveData<Boolean>()
+    val schedulerVisible = MutableLiveData<Boolean>()
     val calendarDate = MutableLiveData<ScheduleDate>()
     val textDate = MutableLiveData<String>()
 
