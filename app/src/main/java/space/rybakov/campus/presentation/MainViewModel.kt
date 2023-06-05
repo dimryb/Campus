@@ -1,15 +1,13 @@
 package space.rybakov.campus.presentation
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import space.rybakov.campus.domain.Repository
 import space.rybakov.campus.entities.Ad
 import space.rybakov.campus.entities.Review
+import space.rybakov.campus.entities.ScheduleDate
 import space.rybakov.campus.entities.Teacher
 import javax.inject.Inject
 
@@ -20,6 +18,10 @@ class MainViewModel @Inject constructor(
     val ads: LiveData<List<Ad>> = repository.ads.asLiveData(Dispatchers.Default)
     val reviews: LiveData<List<Review>> = repository.reviews.asLiveData(Dispatchers.Default)
     val teachers: LiveData<List<Teacher>> = repository.teachers.asLiveData(Dispatchers.Default)
+
+    val calendarVisible = MutableLiveData<Boolean>()
+    val calendarDate = MutableLiveData<ScheduleDate>()
+    val textDate = MutableLiveData<String>()
 
     fun getAds() {
         viewModelScope.launch {
@@ -49,6 +51,11 @@ class MainViewModel @Inject constructor(
                 TODO("нужно сделать")
             }
         }
+    }
+
+    fun setDate(date: ScheduleDate){
+        calendarDate.value = date
+        textDate.value = date.toString()
     }
 
 }
