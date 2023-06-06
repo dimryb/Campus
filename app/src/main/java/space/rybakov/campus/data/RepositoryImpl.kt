@@ -87,31 +87,31 @@ class RepositoryImpl @Inject constructor(
     override suspend fun getTeachers() {
         val teachersList = mutableListOf(
             Teacher(
-                name = "Преподаватель 1",
+                name = "Ширяев Прохор Парфеньевич",
                 rating = 1.1f,
             ),
             Teacher(
-                name = "Преподаватель 2",
+                name = "Никитин Вилли Даниилович",
                 rating = 2.2f,
             ),
             Teacher(
-                name = "Преподаватель 3",
+                name = "Белоусов Вилли Робертович",
                 rating = 3.3f,
             ),
             Teacher(
-                name = "Преподаватель 4",
+                name = "Логинов Назарий Львович",
                 rating = 4.4f,
             ),
             Teacher(
-                name = "Преподаватель 5",
+                name = "Анисимова Элизабет Святославовна",
                 rating = 5.5f,
             ),
             Teacher(
-                name = "Преподаватель 6",
+                name = "Медведева Фия Донатовна",
                 rating = 6.6f,
             ),
             Teacher(
-                name = "Преподаватель 7",
+                name = "Белякова Елизавета Юрьевна",
                 rating = 7.7f,
             ),
         )
@@ -149,6 +149,30 @@ class RepositoryImpl @Inject constructor(
                 name = "Вторая группа пятница",
                 groupId = 1,
                 dayInd = 5
+            ),
+            Lesson(
+                id = 9,
+                name = "10:15-11:45 Разработка КИС",
+                groupId = 3,
+                dayInd = 1
+            ),
+            Lesson(
+                id = 8,
+                name = "12:00-13:30 Разработка КИС",
+                groupId = 3,
+                dayInd = 1
+            ),
+            Lesson(
+                id = 7,
+                name = "14:00-15:30 Исследование операций",
+                groupId = 3,
+                dayInd = 1
+            ),
+            Lesson(
+                id = 6,
+                name = "15:45-17:15 Физическая культура и спорт",
+                groupId = 3,
+                dayInd = 1
             ),
         )
         campusDao.insertSchedule(lessonList.toEntity())
