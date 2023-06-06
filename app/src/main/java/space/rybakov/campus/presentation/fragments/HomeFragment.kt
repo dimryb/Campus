@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import androidx.fragment.app.activityViewModels
 import space.rybakov.campus.R
 import space.rybakov.campus.databinding.FragmentHomeBinding
 import space.rybakov.campus.entities.Ad
+import space.rybakov.campus.entities.Group
 import space.rybakov.campus.entities.Lesson
 import space.rybakov.campus.entities.ScheduleDate
 import space.rybakov.campus.presentation.AdsAdapter
@@ -58,7 +60,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun createGroupsSpinner() {
-        val groupNames = arrayOf<String?>("ФББ-92", "ФББ-93", "ФББ-94", "ФББ-95", "ФББ-96")
+        val groupNames = arrayOf<String?>("ФББ-92", "ФББ-93", "ФББ-94", "ФБ-91", "ФБ-92")
         ArrayAdapter(requireContext(), R.layout.spinner_list, groupNames).also { adapter ->
             val spinner: Spinner = binding.panelTop.groupsSpinner
             spinner.adapter = adapter
@@ -83,13 +85,28 @@ class HomeFragment : Fragment() {
             viewModel.calendarVisible.value = false
             viewModel.schedulerVisible.value = true
         }
+
+        binding.panelTop.groupsSpinner.onItemSelectedListener = object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, index: Int, p3: Long) {
+                viewModel.setGroup(
+                    Group(
+                        id = index,
+                        name = binding.panelTop.groupsSpinner.selectedItem.toString()
+                    )
+                )
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+        }
     }
 
     private fun observeViewModel() {
         viewModel.calendarVisible.observe(viewLifecycleOwner) {
             binding.calendar.visibility = if (it) View.VISIBLE else View.GONE
         }
-        viewModel.textDate.observe(viewLifecycleOwner){
+        viewModel.textDate.observe(viewLifecycleOwner) {
             binding.panelTop.date.text = it
         }
         viewModel.schedulerVisible.observe(viewLifecycleOwner) {
