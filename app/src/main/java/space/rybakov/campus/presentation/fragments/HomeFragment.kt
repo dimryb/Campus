@@ -29,7 +29,6 @@ class HomeFragment : Fragment() {
 
     private val lessonAdapter = LessonAdapter(object : OnInteractionListener {
         override fun onClick(ad: Ad) {
-            TODO("Not yet implemented")
         }
     })
 

@@ -9,11 +9,13 @@ data class LessonEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
     val name: String,
+    val groupId: Int,
+    val dayInd: Int,
 ) {
-    fun toDto(): Lesson = Lesson(id, name)
+    fun toDto(): Lesson = Lesson(id, name, groupId, dayInd)
 
     companion object {
-        fun fromDto(ad: Lesson): LessonEntity = with(ad) { return LessonEntity(id, name) }
+        fun fromDto(ad: Lesson): LessonEntity = with(ad) { return LessonEntity(id, name, groupId, dayInd) }
     }
 }
 

@@ -69,11 +69,13 @@ class RepositoryImpl @Inject constructor(
     override suspend fun getLastReview() {
         val reviewsList = mutableListOf(
             Review(
+                id = 1,
                 teacher = "Зайцева Татьяна Ивановна",
                 content = "Нормальные оценки ставить",
                 credit = 4.2f,
             ),
             Review(
+                id = 2,
                 teacher = "Федорова Елена Ольговна",
                 content = "Какая-то не очень, но мне нравится",
                 credit = 7.2f,
@@ -119,7 +121,34 @@ class RepositoryImpl @Inject constructor(
     override suspend fun fillSchedule() {
         val lessonList = mutableListOf(
             Lesson(
-                name = "Химия",
+                id = 1,
+                name = "Первая группа понедельник",
+                groupId = 0,
+                dayInd = 1
+            ),
+            Lesson(
+                id = 2,
+                name = "Вторая группа вторник",
+                groupId = 1,
+                dayInd = 2
+            ),
+            Lesson(
+                id = 3,
+                name = "Вторая группа среда",
+                groupId = 1,
+                dayInd = 3
+            ),
+            Lesson(
+                id = 4,
+                name = "Вторая группа четверг",
+                groupId = 1,
+                dayInd = 4
+            ),
+            Lesson(
+                id = 5,
+                name = "Вторая группа пятница",
+                groupId = 1,
+                dayInd = 5
             ),
         )
         campusDao.insertSchedule(lessonList.toEntity())
@@ -127,10 +156,10 @@ class RepositoryImpl @Inject constructor(
 
     override fun getSchedule(group: Group, date: ScheduleDate): List<Lesson> {
         return try {
-            val result = campusDao.getSchedule().toDto()
-            result
+            val groupId = group.id
+            val dayInd = date.getWeekDayInt()
+            campusDao.getSchedule(groupId = groupId, dayInd = dayInd).toDto()
         }catch (e: Exception){
-            //TODO("есть проблема")
             Log.e("error", e.toString())
             emptyList<Lesson>()
         }
