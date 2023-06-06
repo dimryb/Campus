@@ -1,14 +1,15 @@
 package space.rybakov.campus.data
 
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import space.rybakov.campus.data.dao.CampusDao
 import space.rybakov.campus.data.entity.*
 import space.rybakov.campus.domain.Repository
-import space.rybakov.campus.entities.Ad
-import space.rybakov.campus.entities.Review
-import space.rybakov.campus.entities.Teacher
+import space.rybakov.campus.entities.*
 import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(
@@ -68,7 +69,7 @@ class RepositoryImpl @Inject constructor(
     override suspend fun getLastReview() {
         val reviewsList = mutableListOf(
             Review(
-                id = 0,
+                id = 1,
                 teacher = "Зайцева Татьяна Ивановна",
                 content = "Нормальные оценки ставить",
                 credit = 4.2f,
@@ -86,34 +87,106 @@ class RepositoryImpl @Inject constructor(
     override suspend fun getTeachers() {
         val teachersList = mutableListOf(
             Teacher(
-                name = "Преподаватель 1",
+                name = "Ширяев Прохор Парфеньевич",
                 rating = 1.1f,
             ),
             Teacher(
-                name = "Преподаватель 2",
+                name = "Никитин Вилли Даниилович",
                 rating = 2.2f,
             ),
             Teacher(
-                name = "Преподаватель 3",
+                name = "Белоусов Вилли Робертович",
                 rating = 3.3f,
             ),
             Teacher(
-                name = "Преподаватель 4",
+                name = "Логинов Назарий Львович",
                 rating = 4.4f,
             ),
             Teacher(
-                name = "Преподаватель 5",
+                name = "Анисимова Элизабет Святославовна",
                 rating = 5.5f,
             ),
             Teacher(
-                name = "Преподаватель 6",
+                name = "Медведева Фия Донатовна",
                 rating = 6.6f,
             ),
             Teacher(
-                name = "Преподаватель 7",
+                name = "Белякова Елизавета Юрьевна",
                 rating = 7.7f,
             ),
         )
         campusDao.insertTeacher(teachersList.toEntity())
     }
+
+    override suspend fun fillSchedule() {
+        val lessonList = mutableListOf(
+            Lesson(
+                id = 1,
+                name = "Первая группа понедельник",
+                groupId = 0,
+                dayInd = 1
+            ),
+            Lesson(
+                id = 2,
+                name = "Вторая группа вторник",
+                groupId = 1,
+                dayInd = 2
+            ),
+            Lesson(
+                id = 3,
+                name = "Вторая группа среда",
+                groupId = 1,
+                dayInd = 3
+            ),
+            Lesson(
+                id = 4,
+                name = "Вторая группа четверг",
+                groupId = 1,
+                dayInd = 4
+            ),
+            Lesson(
+                id = 5,
+                name = "Вторая группа пятница",
+                groupId = 1,
+                dayInd = 5
+            ),
+            Lesson(
+                id = 9,
+                name = "10:15-11:45 Разработка КИС",
+                groupId = 3,
+                dayInd = 1
+            ),
+            Lesson(
+                id = 8,
+                name = "12:00-13:30 Разработка КИС",
+                groupId = 3,
+                dayInd = 1
+            ),
+            Lesson(
+                id = 7,
+                name = "14:00-15:30 Исследование операций",
+                groupId = 3,
+                dayInd = 1
+            ),
+            Lesson(
+                id = 6,
+                name = "15:45-17:15 Физическая культура и спорт",
+                groupId = 3,
+                dayInd = 1
+            ),
+        )
+        campusDao.insertSchedule(lessonList.toEntity())
+    }
+
+    override fun getSchedule(group: Group, date: ScheduleDate): List<Lesson> {
+        return try {
+            val groupId = group.id
+            val dayInd = date.getWeekDayInt()
+            campusDao.getSchedule(groupId = groupId, dayInd = dayInd).toDto()
+        }catch (e: Exception){
+            Log.e("error", e.toString())
+            emptyList<Lesson>()
+        }
+    }
+
 }

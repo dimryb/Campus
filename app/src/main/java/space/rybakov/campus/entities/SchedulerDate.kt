@@ -44,4 +44,11 @@ data class ScheduleDate(
         }
         return "$stringWeekDay $day $stringMonth $year"
     }
+
+    companion object {
+        fun now(): ScheduleDate{
+            val date = LocalDate.now()
+            return ScheduleDate(date.year, date.monthValue, date.dayOfMonth)
+        }
+    }
 }

@@ -6,8 +6,11 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 import space.rybakov.campus.data.entity.AdEntity
+import space.rybakov.campus.data.entity.LessonEntity
 import space.rybakov.campus.data.entity.ReviewEntity
 import space.rybakov.campus.data.entity.TeacherEntity
+import space.rybakov.campus.entities.Group
+import space.rybakov.campus.entities.ScheduleDate
 
 @Dao
 interface CampusDao {
@@ -38,4 +41,14 @@ interface CampusDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTeacher(teacher: List<TeacherEntity>)
+
+    @Query("SELECT * FROM LessonEntity WHERE groupId = :groupId AND dayInd = :dayInd ORDER BY id DESC")
+    fun getSchedule(groupId: Int, dayInd: Int): List<LessonEntity>
+    //fun getSchedule(groupId: Int): List<LessonEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertSchedule(lesson: LessonEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertSchedule(lessons: List<LessonEntity>)
 }
