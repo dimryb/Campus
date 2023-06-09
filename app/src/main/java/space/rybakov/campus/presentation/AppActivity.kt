@@ -2,9 +2,11 @@ package space.rybakov.campus.presentation
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import space.rybakov.campus.R
@@ -25,6 +27,7 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
         super.onStart()
 
         setupListeners()
+        observeViewModel()
     }
 
     private fun setupListeners() {
@@ -52,6 +55,13 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
                 }
             }
             true
+        }
+    }
+
+    private fun observeViewModel() {
+        val reviewButton = findViewById<BottomNavigationItemView>(R.id.reviews_button)
+        mainViewModel.reviewEnable.observe(this){
+            reviewButton.visibility = if (it) View.VISIBLE else View.GONE
         }
     }
 }

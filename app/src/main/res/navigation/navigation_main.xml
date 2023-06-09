@@ -32,7 +32,7 @@
         tools:layout="@layout/fragment_reviews"/>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="space.rybakov.campus.presentation.SettingsFragment"
+        android:name="space.rybakov.campus.presentation.fragments.SettingsFragment"
         android:label="SettingsFragment"
         tools:layout="@layout/fragment_settings"/>
 

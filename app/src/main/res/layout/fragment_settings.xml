@@ -10,4 +10,25 @@
         android:id="@+id/panel_top_settings"
         layout="@layout/panel_top_settings" />
 
+    <Button
+        android:id="@+id/button_generate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Симуляция сервера"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/panel_top_settings" />
+
+    <Switch
+        android:id="@+id/switch_review"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Отзывы"
+        android:textColor="@color/checked"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_generate" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
