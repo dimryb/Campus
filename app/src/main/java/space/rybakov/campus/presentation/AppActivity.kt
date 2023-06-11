@@ -50,6 +50,9 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
                 R.id.reviews_button -> {
                     navController.navigate(R.id.reviewsFragment)
                 }
+                R.id.ads2_button -> {
+                    navController.navigate(R.id.ads2Fragment)
+                }
                 R.id.settings_button -> {
                     navController.navigate(R.id.settingsFragment)
                 }

@@ -35,6 +35,11 @@
         android:name="space.rybakov.campus.presentation.fragments.SettingsFragment"
         android:label="SettingsFragment"
         tools:layout="@layout/fragment_settings"/>
+    <fragment
+        android:id="@+id/ads2Fragment"
+        android:name="space.rybakov.campus.presentation.fragments.Ads2Fragment"
+        android:label="Ads2Fragment"
+        tools:layout="@layout/fragment_ads2"/>
 
 
 </navigation>
