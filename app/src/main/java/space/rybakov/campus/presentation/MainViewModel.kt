@@ -23,6 +23,7 @@ class MainViewModel @Inject constructor(
     val calendarDate = MutableLiveData<ScheduleDate>()
     val textDate = MutableLiveData<String>()
     val group = MutableLiveData<Group>()
+    val reviewEnable = MutableLiveData(false)
 
     fun getAds() {
         viewModelScope.launch {
