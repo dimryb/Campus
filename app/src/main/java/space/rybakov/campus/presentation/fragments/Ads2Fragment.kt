@@ -75,6 +75,7 @@ class Ads2Fragment : Fragment() {
             ConstraintLayout.LayoutParams.WRAP_CONTENT,
         ).apply {
             bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID
+            topToTop = ConstraintLayout.LayoutParams.PARENT_ID
         }
         binding.root.addView(bannerAd, params)
         val adRequest = AdRequest.Builder().build()
