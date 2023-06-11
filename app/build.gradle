@@ -44,6 +44,7 @@ dependencies {
     def roomPagingVersion = roomVersion
     def roomRuntimeVersion = roomVersion
 
+    implementation 'com.yandex.android:mobileads:5.8.0'
     implementation "androidx.room:room-paging:$roomPagingVersion"
     implementation "androidx.room:room-runtime:$roomRuntimeVersion"
     implementation "androidx.room:room-ktx:$roomVersion"

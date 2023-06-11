@@ -10,4 +10,10 @@
         android:id="@+id/panel_top_ads2"
         layout="@layout/panel_top_ads2" />
 
+    <com.yandex.mobile.ads.banner.BannerAdView
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/panel_top_ads2"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
