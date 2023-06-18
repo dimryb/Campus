@@ -67,7 +67,7 @@ class Ads2Fragment : Fragment() {
     private fun createBanner() {
         bannerAd = BannerAdView(requireContext()).apply {
             id = R.id.banner
-            setAdUnitId("demo-banner-yandex")
+            setAdUnitId("R-M-2436145-1")
             setAdSize(AdSize.flexibleSize(bannerWidth, bannerHeight))
         }
         val params = ConstraintLayout.LayoutParams(
