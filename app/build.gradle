@@ -6,6 +6,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('D:\\work\\AndroidStudioProjects\\keystores\\add')
+            storePassword 'rbkvdm'
+            keyAlias 'android'
+            keyPassword 'rbkvdm'
+        }
+    }
     namespace 'space.rybakov.campus'
     compileSdk 33
 
